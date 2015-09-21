@@ -1,0 +1,51 @@
+﻿h1 + div, .footer {
+    padding-bottom:8px;
+    width:90%;
+    margin:0 auto;
+}
+.container-fluid { 
+    max-width: 600px; 
+}
+.overflow,
+.secure,
+.observation,
+.adjustment,
+.control,
+.off { 
+    height:100%;
+    top:0; 
+    width:12px; 
+    float:left; 
+    display:inline; 
+    margin-right:6px;
+    position:absolute;  
+}
+.leyenda {
+    height:12px; 
+    width: 12px;
+    display:inline-block;
+}
+.overflow,
+._overflow { 
+    background-color: #D9A5EF !important; 
+}
+.secure,
+._secure { 
+    background-color: #B1D6B1 !important; 
+}
+.observation,
+._observation { 
+    background-color: #BBCAF4 !important; 
+}
+.adjustment,
+._adjustment { 
+    background-color: #FFFFA5 !important; 
+}
+.control,
+._control { 
+    background-color: #FFDFA5 !important;
+}
+.off,
+._off { 
+    background-color: #E8A5A5 !important; 
+}
