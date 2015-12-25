@@ -9,5 +9,5 @@ app.use(express.static('public'));
 var server = app.listen(port, function() {
     var host = server.address().address;
     
-    console.log('Hey... I am at http://%s:%s', host, port)
+    console.log('Hey... I am a running server', host, port)
 })
