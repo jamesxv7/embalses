@@ -12,7 +12,7 @@ dataFrom50010800.on('value', function (snapshot) {
     
      var item = snapshot.val();
     mv50010800.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
 
     if (levelData.level >= item.overflowLevel)
