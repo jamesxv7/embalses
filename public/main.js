@@ -74,7 +74,7 @@ dataFrom50020100.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50020100.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50020100.appData.push(item);
 });
