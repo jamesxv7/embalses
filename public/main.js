@@ -146,7 +146,7 @@ dataFrom50026140.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50026140.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -184,7 +184,7 @@ dataFrom50027100.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50027100.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50027100.appData.push(item);
 });
@@ -208,7 +208,7 @@ dataFrom50032290.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50032290.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50032290.appData.push(item);
 });
@@ -232,7 +232,7 @@ dataFrom50032590.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50032590.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50032590.appData.push(item);
 });
@@ -256,7 +256,7 @@ dataFrom50039995.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50039995.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -294,7 +294,7 @@ dataFrom50045000.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50045000.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -332,7 +332,7 @@ dataFrom50047550.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50047550.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -370,7 +370,7 @@ dataFrom50048680.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50048680.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50048680.appData.push(item);
 });
@@ -394,7 +394,7 @@ dataFrom50059000.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50059000.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -432,7 +432,7 @@ dataFrom50071225.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50071225.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -470,7 +470,7 @@ dataFrom50075550.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50075550.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50075550.appData.push(item);
 });
@@ -494,7 +494,7 @@ dataFrom50076800.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50076800.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -532,7 +532,7 @@ dataFrom50093045.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50093045.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -572,7 +572,7 @@ dataFrom50095800.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50095800.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50095800.appData.push(item);
 });
@@ -598,7 +598,7 @@ dataFrom50106850.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50106850.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50106850.appData.push(item);
 });
@@ -624,7 +624,7 @@ dataFrom50111210.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50111210.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -664,7 +664,7 @@ dataFrom50111300.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50111300.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50111300.appData.push(item);
 });
@@ -690,7 +690,7 @@ dataFrom50113950.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50113950.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     
     if (levelData.level >= item.overflowLevel)
@@ -730,7 +730,7 @@ dataFrom50125780.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50125780.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50125780.appData.push(item);
 });
@@ -756,7 +756,7 @@ dataFrom50128900.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50128900.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50128900.appData.push(item);
 });
@@ -782,7 +782,7 @@ dataFrom50141100.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50141100.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50141100.appData.push(item);
 });
@@ -808,7 +808,7 @@ dataFrom50141500.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50141500.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50141500.appData.push(item);
 });
@@ -834,7 +834,7 @@ dataFrom50146073.on('value', function (snapshot) {
     
     var item = snapshot.val();
     vm50146073.appData.$remove(0);
-    item.level = levelData.level;
+    item.level = levelData.level.toFixed(2);
     item.time = levelData.time;
     vm50146073.appData.push(item);
 });
