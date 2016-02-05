@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="es">
 <head>
@@ -8,397 +8,54 @@
     <meta name="author" content="Jaime A. Olmo">  
     <title>Embalses Puerto Rico</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.12.13/vue.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
-
 </head>
 <body>
-    <div class="container-fluid" style=";">
+    <div class="container-fluid">
         <h1>Embalses! <small>Medida reportada en metros. Fecha indica última lectura recibida por el Servicio Geológico de EE. UU.</small></h1>
         <div><strong>Leyenda:</strong> <div class="_overflow leyenda"></div> Desborde <div class="_secure leyenda"></div> Seguridad <div class="_observation leyenda"></div> Observación <div class="_adjustment leyenda"></div> Ajustes Operacionales <div class="_control leyenda"></div> Control <div class="_off leyenda"></div> Fuera de Servicio</div>
-        <ul class="list-group">
-            <li id="siteID-50010800" class="list-group-item" v-repeat="appData" >             
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">                        
-                        <p class="list-group-item-text">{{ city }}</p>                        
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2> 
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50011088" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
+        <div id="app">
+                    <p>Ordernar por:</p>    
+                    <!-- Standard button -->
+                    <button type="button" class="btn btn-default" style="width: 32.8%" v-on:click="sortBy('city')">Pueblo</button>
+                    <!-- Standard button -->
+                    <button type="button" class="btn btn-default" style="width: 32.8%" v-on:click="sortBy('currentLevel')">Nivel</button>
+                    <!-- Standard button -->
+                    <button type="button" class="btn btn-default" style="width: 32.8%" v-on:click="sortBy('status')">Status</button>
+                    <form id="search"> Search <input class="form-control"    name="query" v-model="filterKey"></form>
+            <div class="list-group" v-for="(index, val) in embalses" track-by="$key">
+                <div class="list-group-item" v-for="(index, item) in val | filterBy filterKey | orderBy sortKey order "> 
+                    <div id="{{ $key }}" class="row">
+                        <div class="{{ item.status }}"></div>
+                        <div class="col-xs-6">
+                            <p class="list-group-item-text">{{ item.city }}</p>
+                            <h3 class="list-group-item-heading">{{ item.name }}</h3>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <h2 class="list-group-item-heading">{{ item.currentLevel }}</h2> 
+                            <p class="list-group-item-text">{{ item.currentLevelTime }}</p>
+                        </div>
                     </div>
                 </div>
-            </li>
-            <li id="siteID-50020100" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">                       
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50020550" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">                   
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50023110" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50026140" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50027100" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50032290" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50032590" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50039995" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50045000" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50047550" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50048680" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50059000" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50071225" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50075550" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50076800" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50093045" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50095800" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50106850" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50111210" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50111300" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50113950" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50125780" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50128900" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50141100" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50141500" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-            <li id="siteID-50146073" class="list-group-item" v-repeat="appData">
-                <div class="row">
-                    <div class="{{ status }}"></div>
-                    <div class="col-xs-6">
-                        <p class="list-group-item-text">{{ city }}</p>
-                        <h3 class="list-group-item-heading">{{ name }}</h3>
-                    </div>
-                    <div class="col-xs-6 text-right">
-                        <h2 class="list-group-item-heading">{{ level }}</h2>
-                        <p class="list-group-item-text">{{ time }}</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <div class="footer">
-            <span>© 2015</span>
-            <a href="http://www.jaimeolmo.com">Jaime Olmo</a>
+            </div>
+        </div>      
+    </div>
+    <div class="footer">
+        <span>© 2015</span><a href="http://www.jaimeolmo.com">Jaime Olmo</a>
             — Hecho en <a href="http://www.seepuertorico.com/">Puerto Rico</a>
-        </div>
     </div>
     <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+//   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+//   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+//   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+//   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-67801226-1', 'auto');
-  ga('send', 'pageview');
-
+//   ga('create', 'UA-67801226-1', 'auto');
+//   ga('send', 'pageview');
     </script>
-    <script src="main.js"></script>
+    <script src="//npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.js"></script>
+    <script src="//cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+    <script src="main.v1.0.15.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
   "private": true,
   "dependencies": {
     "express": "^4.13.3",
-    "firebase": "^2.2.9",
+    "firebase": "^2.4.0",
     "vue": "^0.12.13"
   }
 }
