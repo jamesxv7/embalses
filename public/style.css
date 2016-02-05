@@ -1,15 +1,19 @@
-﻿h1 + div, .footer {
+﻿h1 + div,
+#app > p, 
+.footer {
     padding-bottom:8px;
     width:90%;
     margin:0 auto;
 }
 
-.container-fluid { 
+.container-fluid,
+.footer { 
     max-width: 600px; 
 }
 
-.footer {
-    float: left;
+#app button,
+#app #search {
+  margin-bottom: 10px;
 }
 
 .overflow,
@@ -62,6 +66,10 @@
 }
 
 * { box-sizing: border-box; }
+
+[v-cloak] {
+  display: none;
+}
 
 /* ---- grid ---- */
 
