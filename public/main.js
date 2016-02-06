@@ -5,18 +5,8 @@
 var baseURL = 'https://data-embalses-pr.firebaseio.com/v1/embalse/siteID/'
 
 // dam data
-var dataSource = new Firebase(baseURL)
-
-var vm = new Vue({
-  el: '#app',
-  data: {
-      embalses: [],
-      order: 1,
-      sortKey: 'city',
-      filterKey: ''
-  },
-  ready: function () {
-    dataSource.orderByKey().on('value', function (snapshot) {
+var dataSource = new Firebase(baseURL);
+dataSource.orderByKey().on('value', function (snapshot) {
       var item = snapshot.val();
 
       for (var i in item) {
@@ -46,6 +36,15 @@ var vm = new Vue({
     vm.embalses.push(item);
 
     });
+
+// Vuejs instance
+var vm = new Vue({
+  el: '#app',
+  data: {
+      embalses: [],
+      order: 1,
+      sortKey: 'city',
+      filterKey: ''
   },
   methods: {
     sortBy: function(key){
