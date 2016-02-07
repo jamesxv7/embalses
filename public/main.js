@@ -48,7 +48,6 @@ var vm = new Vue({
   },
   methods: {
     sortBy: function(key){
-      console.log('Sort by selected key! ' + key);
       this.sortKey = key;
       this.order = this.order * -1;
     }

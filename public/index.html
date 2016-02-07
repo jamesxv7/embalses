@@ -29,8 +29,8 @@
         <form id="search">
           <input class="form-control" placeholder="Filtrar información..." name="q" v-model="filterKey">
         </form>
-          <div class="list-group" v-for="(index, val) in embalses" track-by="$key">
-            <div class="list-group-item" v-for="(index, item) in val | filterBy filterKey | orderBy sortKey order "> 
+          <div class="list-group" v-for="val in embalses" track-by="$key">
+            <div class="list-group-item" v-for="item in val | filterBy filterKey | orderBy sortKey order"> 
               <div id="{{ $key }}" class="row">
                 <div class="{{ item.status }}"></div>
                 <div class="col-xs-6" v-cloak>
