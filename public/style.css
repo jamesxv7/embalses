@@ -76,6 +76,10 @@
   color: yellowgreen;
   opacity: 0.5;
   padding-right: 4px;
+  top: 25%;
+  -webkit-transform: translateY(-25%);
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
 }
 
 .glyphicon-circle-arrow-up {
