@@ -71,6 +71,10 @@
   display: none;
 }
 
+.glyphicon {
+  font-size: .5em;
+}
+
 /* ---- grid ---- */
 
 .grid {

@@ -38,7 +38,7 @@
                     <h3 class="list-group-item-heading">{{ item.name }}</h3>
                 </div>
                 <div class="col-xs-6 text-right" v-cloak>
-                    <h2 class="list-group-item-heading">{{ item.currentLevel | toDecimal }}</h2> 
+                    <h2 class="list-group-item-heading"><span class="glyphicon {{ indicator }}" aria-hidden="true"></span>{{ item.currentLevel | toDecimal }}</h2>
                     <p class="list-group-item-text">{{ item.currentLevelTime | formatDate }}</p>
                 </div>
               </div>
@@ -47,7 +47,8 @@
       </div>
   </div>
   <div class="footer">
-    <span>© 2015</span><a href="http://www.jaimeolmo.com">Jaime Olmo</a> — Hecho en <a href="http://www.seepuertorico.com/">Puerto Rico</a>
+    <span>© 2015</span> <a href="http://www.jaimeolmo.com">Jaime Olmo</a> — Hecho en <a href="http://www.seepuertorico.com/">Puerto Rico</a>
+    <a href="https://github.com/jamesxv7/embalses" style="float: right"><img src="GitHub-Mark.png" /></a>
   </div>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

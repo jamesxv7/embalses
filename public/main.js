@@ -1,5 +1,5 @@
 // General Vue configuration for easy debuggin.
-// Vue.config.debug = true
+Vue.config.debug = true
 
 // General Firebase configuration
 var baseURL = 'https://data-embalses-pr.firebaseio.com/v1/embalse/siteID/'
@@ -66,6 +66,20 @@ var vm = new Vue({
         return datePart[1] + " " + year;
       }
       return "N/A";
+    }
+  },
+  computed: {
+    indicator: function () {
+      for (var i in this.embalses[0]) {
+        if (this.embalses[0][i].currentLevel > this.embalses[0][i].last8HoursLevel) {
+        return 'glyphicon-chevron-up'
+      } else if (this.embalses[0][i].currentLevel < this.embalses[0][i].last8HoursLevel) {
+        return 'glyphicon-chevron-down'
+      } else {
+        return 'glyphicon-record';
+      }
+      }
+      
     }
   }
 })
