@@ -38,7 +38,7 @@
                     <h3 class="list-group-item-heading">{{ item.name }}</h3>
                 </div>
                 <div class="col-xs-6 text-right" v-cloak>
-                    <h2 class="list-group-item-heading"><span class="glyphicon {{ indicator }}" aria-hidden="true"></span>{{ item.currentLevel | toDecimal }}</h2>
+                    <h2 class="list-group-item-heading"><span class="glyphicon {{ item.indicator }}" aria-hidden="true"></span>{{ item.currentLevel | toDecimal }}</h2>
                     <p class="list-group-item-text">{{ item.currentLevelTime | formatDate }}</p>
                 </div>
               </div>

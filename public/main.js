@@ -1,15 +1,16 @@
 // General Vue configuration for easy debuggin.
-Vue.config.debug = true
+// Vue.config.debug = true
 
 // General Firebase configuration
 var baseURL = 'https://data-embalses-pr.firebaseio.com/v1/embalse/siteID/'
 
-// dam data
+// Dam data
 var dataSource = new Firebase(baseURL);
 dataSource.orderByKey().on('value', function (snapshot) {
       var item = snapshot.val();
 
       for (var i in item) {
+        // Level status
         if (item[i].hasOwnProperty('overflowLevel') ||
         item[i].hasOwnProperty('secureLevel') ||
         item[i].hasOwnProperty('observationLevel') ||
@@ -28,8 +29,17 @@ dataSource.orderByKey().on('value', function (snapshot) {
             item[i].status = 'control';
           else
             item[i].status = 'off';
-      } else {
-          item[i].status = 'none';
+        } else {
+            item[i].status = 'none';
+        }
+        
+        // Indicator
+        if (item[i].currentLevel > item[i].last8HoursLevel) {
+          item[i].indicator = 'glyphicon-circle-arrow-up';
+        } else if (item[i].currentLevel < item[i].last8HoursLevel) {
+          item[i].indicator = 'glyphicon-circle-arrow-down';
+        } else {
+          item[i].indicator = 'glyphicon-record';
         }
       }
 
@@ -64,20 +74,6 @@ var vm = new Vue({
         return datePart[1] + " " + year;
       }
       return "N/A";
-    }
-  },
-  computed: {
-    indicator: function () {
-      for (var i in this.embalses[0]) {
-        if (this.embalses[0][i].currentLevel > this.embalses[0][i].last8HoursLevel) {
-        return 'glyphicon-chevron-up'
-      } else if (this.embalses[0][i].currentLevel < this.embalses[0][i].last8HoursLevel) {
-        return 'glyphicon-chevron-down'
-      } else {
-        return 'glyphicon-record';
-      }
-      }
-      
     }
   }
 })

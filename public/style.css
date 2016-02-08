@@ -72,7 +72,20 @@
 }
 
 .glyphicon {
-  font-size: .5em;
+  font-size: .45em;
+  color: yellowgreen;
+  opacity: 0.5;
+  padding-right: 4px;
+}
+
+.glyphicon-circle-arrow-up {
+  color: green;
+  opacity: 0.5;
+}
+
+.glyphicon-circle-arrow-down {
+  color: red;
+  opacity: 0.5;
 }
 
 /* ---- grid ---- */
