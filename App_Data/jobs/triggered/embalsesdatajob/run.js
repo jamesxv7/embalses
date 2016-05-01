@@ -42,9 +42,9 @@ function (error, response, body) {
 
                 let temp = dataArray[dataArray.length - 1].split("/");
                 let currentLevelTime = temp[0];
-                let currentLevel = temp[1];
+                let currentLevel = (!isNaN(parseFloat(temp[1])) && isFinite(temp[1]) ? temp[1] : "0.0");
                 temp = dataArray[0].split("/");
-                let last8HoursLevel = temp[1];
+                let last8HoursLevel = (!isNaN(parseFloat(temp[1])) && isFinite(temp[1]) ? temp[1] : "0.0");
 
                 ref.update({
                     "currentLevel": parseFloat(currentLevel, 10),
@@ -60,7 +60,7 @@ function (error, response, body) {
                         console.log("Authenticated successfully with payload.");
                     }
                 });
-                levelRef.set(dataObject);
+                // levelRef.set(dataObject); Only use when graphics are implemented
                 processData = false;
                 dataArray = [];
                 dataObject = {};
