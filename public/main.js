@@ -67,13 +67,42 @@ var vm = new Vue({
       return parseFloat(value).toFixed(2);
     },
     formatDate: function(value) {
-      if (value != undefined) {
-        var datePart = value.split(' ');
-        var year = datePart[0].split('-');
-        year = year[1]+ '/' +year[2]+ '/' +year[0]
-        return datePart[1] + " " + year;
+      if (value != undefined) {                      
+        var date = new Date((value || "").replace(/-/g, "/").replace(/[TZ]/g, " ")),
+        diff = (((new Date()).getTime() - date.getTime()) / 1000),
+        day_diff = Math.floor(diff / 86400);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+
+      if (isNaN(day_diff) || day_diff < 0 || day_diff >= 31)
+        return (
+            year.toString() + '-'
+            +((month<10) ? '0' + month.toString() : month.toString())+ '-'
+            +((day<10) ? '0' + day.toString() : day.toString())
+        );
+
+      var r =
+      ( 
+          (
+              day_diff == 0 && 
+              (
+                  (diff < 60 && "justo ahora")
+                  || (diff < 120 && "Hace 1 minuto")
+                  || (diff < 3600 && "Hace " + Math.floor(diff / 60) + " minutos")
+                  || (diff < 7200 && "Hace 1 hora")
+                  || (diff < 86400 && "Hace " + Math.floor(diff / 3600) + " horas")
+              )
+          )
+          || (day_diff == 1 && "Ayer")
+          || (day_diff < 7 && "Hace " + day_diff + " dias")
+          || (day_diff < 31 && "Hace " + Math.ceil(day_diff / 7) + " semanas")
+      );
+        return r;
+
+      } else {
+        return "N/A";
       }
-      return "N/A";
     }
   }
 })
