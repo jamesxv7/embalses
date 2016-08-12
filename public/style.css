@@ -1,14 +1,43 @@
 ﻿h1 + div,
-#app > p, 
-.footer {
-    padding-bottom:8px;
-    width:90%;
-    margin:0 auto;
+#app > p {
+    padding-bottom: 8px;
+    margin: 0 auto;
 }
 
-.container-fluid,
+.container {
+
+}
+
+.main-content {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1600px;
+}
+
+.main-description {
+    font-weight: 400;
+    color: #777;
+    font-size: 1.7em;
+}
+
+#app, #legend {
+    margin: 0 auto;
+}
+
+#legend {
+  padding-bottom: 28px;
+}
+
+#legend span {
+  display:inline-block;
+  padding-right: 10px; 
+}
+
 .footer { 
-    max-width: 600px; 
+    max-width: 1600px;
+    padding: 0 28px 18px 28px;
+    margin: 0 auto;
+    display: flex;
 }
 
 #app button,
@@ -29,7 +58,8 @@
     float:left; 
     display:inline; 
     margin-right:6px;
-    position:absolute;  
+    position:absolute;
+    border-radius: 4px 0 0 4px;
 }
 .leyenda {
     height:12px; 
@@ -63,9 +93,8 @@
 .none,
 ._none { 
     background-color: #EEE !important; 
+    border-radius: 5px 0 0 5px;
 }
-
-* { box-sizing: border-box; }
 
 [v-cloak] {
   display: none;
@@ -92,37 +121,42 @@
   opacity: 0.5;
 }
 
-/* ---- grid ---- */
-
-.grid {
-  background: none;
-  max-width: 100%;
+.list-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* clearfix */
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
+.list-group-item {
+    flex: 1 0 300px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    max-width: 300px;
 }
 
-/* ---- grid-item ---- */
+@media (min-width: 600px) {
+    #app, #legend {
 
-.grid-item {
-  width: 300px;
-  height: 120px;
-  float: left;
-  border: 1px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.5);
-  border-radius: 5px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+    }
+    
 }
 
-.grid-item--width2 { width: 380px; }
-.grid-item--width3 { width: 480px; }
-.grid-item--width4 { width: 640px; }
+@media (min-width: 960px) {
+    #app, #legend {
+        
+    }
+}
 
-.grid-item--height2 { height: 200px; }
-.grid-item--height3 { height: 260px; }
-.grid-item--height4 { height: 360px; }
+@media (min-width: 1200px) {
+   .container {
+      width: 960px !important;
+      
+    }
+}
+
+@media (min-width: 1599px) {
+   .container {
+      width: 1400px !important;
+      text-align: center;
+    }
+}
