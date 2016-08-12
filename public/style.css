@@ -1,11 +1,6 @@
-﻿h1 + div,
-#app > p {
-    padding-bottom: 8px;
-    margin: 0 auto;
-}
-
-.container {
-
+﻿.container {
+  margin-top: 60px;
+  margin-bottom: 20px;
 }
 
 .main-content {
@@ -15,13 +10,13 @@
 }
 
 .main-description {
-    font-weight: 400;
-    color: #777;
-    font-size: 1.7em;
+  font-weight: 400;
+  color: #777;
+  font-size: 1.7em;
 }
 
 #app, #legend {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 #legend {
@@ -34,10 +29,10 @@
 }
 
 .footer { 
-    max-width: 1600px;
-    padding: 0 28px 18px 28px;
-    margin: 0 auto;
-    display: flex;
+  max-width: 1600px;
+  padding: 0 28px 18px 28px;
+  margin: 0 auto;
+  display: flex;
 }
 
 #app button,
@@ -52,48 +47,55 @@
 .control,
 .off,
 .none { 
-    height:100%;
-    top:0; 
-    width:12px; 
-    float:left; 
-    display:inline; 
-    margin-right:6px;
-    position:absolute;
-    border-radius: 4px 0 0 4px;
+  height:100%;
+  top:0; 
+  width:12px; 
+  display:inline; 
+  margin-right:6px;
+  position:absolute;
+  border-radius: 4px 0 0 4px;
 }
+
 .leyenda {
-    height:12px; 
-    width: 12px;
-    display:inline-block;
+  height:12px; 
+  width: 12px;
+  display:inline-block;
 }
+
 .overflow,
 ._overflow { 
-    background-color: #D9A5EF !important; 
+  background-color: #D9A5EF !important; 
 }
+
 .secure,
 ._secure { 
-    background-color: #B1D6B1 !important; 
+  background-color: #B1D6B1 !important; 
 }
+
 .observation,
 ._observation { 
-    background-color: #BBCAF4 !important; 
+  background-color: #BBCAF4 !important; 
 }
+
 .adjustment,
 ._adjustment { 
-    background-color: #FFFFA5 !important; 
+  background-color: #FFFFA5 !important; 
 }
+
 .control,
 ._control { 
-    background-color: #FFDFA5 !important;
+  background-color: #FFDFA5 !important;
 }
+
 .off,
 ._off { 
-    background-color: #E8A5A5 !important; 
+  background-color: #E8A5A5 !important; 
 }
+
 .none,
 ._none { 
-    background-color: #EEE !important; 
-    border-radius: 5px 0 0 5px;
+  background-color: #EEE !important; 
+  border-radius: 5px 0 0 5px;
 }
 
 [v-cloak] {
@@ -122,41 +124,37 @@
 }
 
 .list-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .list-group-item {
-    flex: 1 0 300px;
-    margin: 10px 5px;
-    border-radius: 5px;
-    max-width: 300px;
+  flex: 1 0 100%;
+  margin: 10px 5px;
+  border-radius: 5px;
 }
 
 @media (min-width: 600px) {
-    #app, #legend {
-
-    }
-    
-}
-
-@media (min-width: 960px) {
-    #app, #legend {
-        
-    }
+  .list-group-item {
+    flex: 1 0 48%;
+  }
 }
 
 @media (min-width: 1200px) {
-   .container {
-      width: 960px !important;
-      
-    }
+  .container {
+    width: 960px !important;
+  }
+
+  .list-group-item {
+    flex: 1 0 31%;
+    max-width: 31%;
+  }
 }
 
 @media (min-width: 1599px) {
-   .container {
-      width: 1400px !important;
-      text-align: center;
-    }
+  .container {
+    width: 1400px !important;
+    text-align: center;
+  }
 }
