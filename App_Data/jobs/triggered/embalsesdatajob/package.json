@@ -11,7 +11,7 @@
       "node": "4.2.3"
   },
   "dependencies": {
-    "firebase": "^2.4.0",
-    "request": "^2.67.0"
+    "firebase": "^3.2.1",
+    "request": "^2.74.0"
   }
 }
