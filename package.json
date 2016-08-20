@@ -1,6 +1,6 @@
 {
   "name": "Embalses-Puerto-Rico",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Aplicación para monitorear en tiempo real los niveles de los principales lagos en Puerto Rico.",
   "main": "server.js",
   "author": {
