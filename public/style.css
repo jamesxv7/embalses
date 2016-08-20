@@ -17,6 +17,7 @@
 
 #app, #legend {
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 #legend {
@@ -30,9 +31,10 @@
 
 .footer { 
   max-width: 1600px;
-  padding: 0 28px 18px 28px;
   margin: 0 auto;
+  padding-bottom: 18px;
   display: flex;
+  width: 90%;
 }
 
 #app button,
