@@ -12,27 +12,26 @@ dataSource.orderByKey().on('value', function (snapshot) {
   for (var i in item) {
     // Level status
     if (item[i].hasOwnProperty('overflowLevel') ||
-    item[i].hasOwnProperty('secureLevel') ||
-    item[i].hasOwnProperty('observationLevel') ||
-    item[i].hasOwnProperty('adjustmentLevel') ||
-    item[i].hasOwnProperty('controlLevel'))
-    {
+      item[i].hasOwnProperty('secureLevel') ||
+      item[i].hasOwnProperty('observationLevel') ||
+      item[i].hasOwnProperty('adjustmentLevel') ||
+      item[i].hasOwnProperty('controlLevel')) {
       if (item[i].currentLevel >= item[i].overflowLevel)
-        item[i].status = 'overflow';
+        item[i].status = 'a_overflow';
       else if (item[i].currentLevel >= item[i].secureLevel)
-        item[i].status = 'secure';
+        item[i].status = 'b_secure';
       else if (item[i].currentLevel >= item[i].observationLevel)
-        item[i].status = 'observation';
+        item[i].status = 'c_observation';
       else if (item[i].currentLevel >= item[i].adjustmentLevel)
-        item[i].status = 'adjustment';
+        item[i].status = 'd_adjustment';
       else if (item[i].currentLevel >= item[i].controlLevel)
-        item[i].status = 'control';
+        item[i].status = 'e_control';
       else
-        item[i].status = 'off';
+        item[i].status = 'f_off';
     } else {
-      item[i].status = 'none';
+      item[i].status = 'g_none';
     }
-    
+
     // Indicator
     if (item[i].currentLevel > item[i].last8HoursLevel) {
       item[i].indicator = 'glyphicon-circle-arrow-up';
@@ -57,49 +56,51 @@ var vm = new Vue({
     filterKey: ''
   },
   methods: {
-    sortBy: function(key){
+    sortBy: function (key) {
       this.sortKey = key;
       this.order = this.order * -1;
     }
   },
   filters: {
-    toDecimal: function(value) {
+    toDecimal: function (value) {
       return parseFloat(value).toFixed(2);
     },
-    formatDate: function(value) {
+    formatDate: function (value) {
       if (value != undefined) {
-        var date = new Date((value || "").replace(/-/g, "/").replace(/[TZ]/g, " ")),
-          diff = (((new Date()).getTime() - date.getTime()) / 1000),
-          day_diff = Math.floor(diff / 86400);
+        var date = new Date((value || "").replace(/-/g, "/").replace(/[TZ]/g, " "));
+        var diff = (((new Date()).getTime() - date.getTime()) / 1000);
+        var day_diff = Math.floor(diff / 86400);
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
         var day = date.getDate();
 
-        if (isNaN(day_diff) || day_diff < 0 || day_diff >= 31)
+        if (isNaN(day_diff) || day_diff < 0)
           return (
-              year.toString() + '-'
-              +((month<10) ? '0' + month.toString() : month.toString())+ '-'
-              +((day<10) ? '0' + day.toString() : day.toString())
+            ((month < 10) ? '0' + month.toString() : month.toString()) + '/'
+            + ((day < 10) ? '0' + day.toString() : day.toString()) + '/'
+            + year.toString()
           );
 
+        var since = "Hace "
+
         var r =
-        ( 
+          (
             (
-                day_diff == 0 && 
-                (
-                    (diff < 60 && "justo ahora")
-                    || (diff < 120 && "Hace 1 minuto")
-                    || (diff < 3600 && "Hace " + Math.floor(diff / 60) + " minutos")
-                    || (diff < 7200 && "Hace 1 hora")
-                    || (diff < 86400 && "Hace " + Math.floor(diff / 3600) + " horas")
-                )
+              day_diff == 0 &&
+              (
+                (diff < 60 && "justo ahora")
+                || (diff < 120 && since + "1 minuto")
+                || (diff < 3600 && since + Math.floor(diff / 60) + " minutos")
+                || (diff < 7200 && since + "1 hora")
+                || (diff < 86400 && since + Math.floor(diff / 3600) + " horas")
+              )
             )
             || (day_diff == 1 && "Ayer")
-            || (day_diff < 7 && "Hace " + day_diff + " dias")
-            || (day_diff < 31 && "Hace " + Math.ceil(day_diff / 7) + " semanas")
-        );
+            || (day_diff < 7 && Since + day_diff + " dias")
+            || (day_diff < 31 && since + Math.ceil(day_diff / 7) + " semanas")
+            || (day_diff >= 31 && since + Math.ceil(day_diff / 31) + " meses")
+          );
         return r;
-
       } else {
         return "N/A";
       }

@@ -17,6 +17,7 @@
 
 #app, #legend {
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 #legend {
@@ -30,9 +31,10 @@
 
 .footer { 
   max-width: 1600px;
-  padding: 0 28px 18px 28px;
   margin: 0 auto;
+  padding-bottom: 18px;
   display: flex;
+  width: 90%;
 }
 
 #app button,
@@ -40,13 +42,13 @@
   margin-bottom: 10px;
 }
 
-.overflow,
-.secure,
-.observation,
-.adjustment,
-.control,
-.off,
-.none { 
+.a_overflow,
+.b_secure,
+.c_observation,
+.d_adjustment,
+.e_control,
+.f_off,
+.g_none { 
   height:100%;
   top:0; 
   width:12px; 
@@ -62,37 +64,37 @@
   display:inline-block;
 }
 
-.overflow,
+.a_overflow,
 ._overflow { 
   background-color: #D9A5EF !important; 
 }
 
-.secure,
+.b_secure,
 ._secure { 
   background-color: #B1D6B1 !important; 
 }
 
-.observation,
+.c_observation,
 ._observation { 
   background-color: #BBCAF4 !important; 
 }
 
-.adjustment,
+.d_adjustment,
 ._adjustment { 
   background-color: #FFFFA5 !important; 
 }
 
-.control,
+.e_control,
 ._control { 
   background-color: #FFDFA5 !important;
 }
 
-.off,
+.f_off,
 ._off { 
   background-color: #E8A5A5 !important; 
 }
 
-.none,
+.g_none,
 ._none { 
   background-color: #EEE !important; 
   border-radius: 5px 0 0 5px;
