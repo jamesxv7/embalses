@@ -97,7 +97,6 @@ var vm = new Vue({
             || (day_diff == 1 && "Ayer")
             || (day_diff < 7 && "Hace " + day_diff + " dias")
             || (day_diff < 31 && "Hace " + Math.ceil(day_diff / 7) + " semanas")
-            || (day_diff > 31 && "Hace un 1 mes o más")
         );
         return r;
 
