@@ -258,3 +258,8 @@ node_modules
 ## Visual Studio Code
 #############
 .vscode/
+
+.vs
+.babelrc
+.eslintrc*
+.firebaserc
