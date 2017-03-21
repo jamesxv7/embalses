@@ -1,18 +1,17 @@
 const https = require('https');
-// const request = require('request');
-var firebase = require('firebase');
+const fb = require('firebase');
 
 const FB_DATABASE_URL = "https://data-embalses-pr.firebaseio.com/"
 const FB_ACCOUNT_DATA = "./embalse-srv-account.json"
+const DATA_URL = "https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=pr&period=PT8H&parameterCd=62616&siteType=LK&siteStatus=all"
 
-let lakeMatadata = {}
-let lakeValues = {}
-let jsonDataObj = {}
-let lakeDataFromFb = {}
-let stringData = "{"
+// Initialize Firebase Database Service
+fb.initializeApp({
+  databaseURL: FB_DATABASE_URL,
+  serviceAccount: FB_ACCOUNT_DATA
+});
 
-// const sourceUrl = "http://waterdata.usgs.gov/pr/nwis/uv?cb_62616=on&amp;format=rdb&amp;period=8h";
-const dataUrl = "https://waterservices.usgs.gov/nwis/iv/?format=json&stateCd=pr&period=PT8H&parameterCd=62616&siteType=LK&siteStatus=all"
+fb.database.enableLogging(true);
 
 const getContent = function (url) {
   // return new pending promise
@@ -35,44 +34,53 @@ const getContent = function (url) {
   })
 };
 
-getContent(dataUrl)
-  .then((html) => {
-    jsonDataObj = JSON.parse(html)
-    jsonDataObj = jsonDataObj.value.timeSeries
-
-    firebase.initializeApp({
-      databaseURL: FB_DATABASE_URL,
-      serviceAccount: FB_ACCOUNT_DATA
-    });
-
-    firebase.database.enableLogging(true);
-
-    firebase.database()
-      .ref("/v1/embalse/siteID")
-      .once("value")
-      .then(function (snapshot) {
-        for (embalse in snapshot.val()) {
-          stringData += '"' + embalse + '":' + '"' + snapshot.val()[embalse].currentLevelTime + '",'
-        }
-        stringData = (stringData.slice(0, -1)) + "}"
-        lakeDataFromFb = JSON.parse(stringData)
-
-        for (let lake in jsonDataObj) {
-          lakeMatadata = jsonDataObj[lake].sourceInfo
-          lakeValues = jsonDataObj[lake].values
-          const siteID = lakeMatadata.siteCode['0'].value
-          latestDateFromDb = lakeDataFromFb[siteID]
-          let keyLastValue = lakeValues['0'].value.length - 1
-
-          if (keyLastValue > 0) {
-            newDate = lakeValues['0'].value[keyLastValue].dateTime
-            newDate = newDate
-              .substring(0, newDate.indexOf("."))
-              .replace(/[TZ]/g, " ")
-            // console.log(lakeValues['0'].value['0'].value)
-            // console.log(lakeValues['0'].value[keyLastValue].value)
+function processData() {
+  getContent(DATA_URL)
+    .then((rawData) => {
+      let jsonDataObj = JSON.parse(rawData)
+      jsonDataObj = jsonDataObj.value.timeSeries
+      // Get latest date values from Db
+      fb.database()
+        .ref("/v1/embalse/siteID")
+        .once("value")
+        .then(function (data) {
+          let rawLakeAndDate = "{"
+          for (lake in data.val()) {
+            rawLakeAndDate += '"' + lake + '":' + '"' + data.val()[lake].currentLevelTime + '",'
           }
-        }
-      });
-  })
-  .catch((err) => console.log(err))
+          rawLakeAndDate = (rawLakeAndDate.slice(0, -1)) + "}"
+          const lakeDataFromDb = JSON.parse(rawLakeAndDate)
+          // Start working with data from Water Services API
+          for (let lake in jsonDataObj) {
+            const lakeValues = jsonDataObj[lake].values
+            const listSize = lakeValues['0'].value.length - 1
+
+            // Lets work only with lakes with sample points
+            if (listSize > 0) {
+              const siteID = jsonDataObj[lake].sourceInfo.siteCode['0'].value
+              const latestDateFromDb = lakeDataFromDb[siteID]
+
+              // Update only new values
+              let newDate = lakeValues['0'].value[listSize].dateTime
+              newDate = newDate.substring(0, newDate.indexOf("."))
+                .replace(/[TZ]/g, " ")
+              if (newDate !== latestDateFromDb) {
+                fb.database()
+                  .ref(`/test/embalse/siteID/${siteID}`)
+                  .update({
+                    "currentLevel": parseFloat(lakeValues['0'].value[listSize].value, 10),
+                    "currentLevelTime": newDate,
+                    "last8HoursLevel": parseFloat(lakeValues['0'].value['0'].value, 10)
+                  })
+              }
+            }
+          }
+        });
+    })
+    .catch((err) => console.log(err))
+}
+
+// Run every 2 mins
+setInterval(processData,
+  120000
+)
