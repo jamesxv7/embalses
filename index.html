@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Herramienta para monitorear en tiempo real los niveles de los embalses en Puerto Rico.">
+  <meta name="author" content="Jaime A. Olmo">
+  <title>Niveles de embalses en Puerto Rico</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .main-description {
+      font-weight: 400;
+      color: #777;
+      font-size: 1.7em;
+    }
+    
+    @media (min-width: 1200px) {
+      .container {
+        width: 960px;
+      }
+    }
+    
+    @media (min-width: 1599px) {
+      .container {
+        width: 1400px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="main-header">
+      <h1>Niveles de embalses en Puerto Rico</h1>
+      <div class="main-description">Monitoreo en tiempo real de los niveles de los embalses en Puerto Rico. Medida reportada en metros. Tiempo indica última nlectura recibida por el Servicio Geológico de EE. UU.</div>
+    </div>
+  </div>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-67801226-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
+</html>
