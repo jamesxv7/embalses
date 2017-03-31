@@ -4,11 +4,13 @@
   "description": "Aplicación para monitorear en tiempo real los niveles de los principales lagos en Puerto Rico.",
   "author": "jamesxv7 <jamesxv7@gmail.com>",
   "private": true,
+  "main": "server.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"
   },
   "dependencies": {
+    "express": "^4.15.2",
     "firebase": "^3.7.2",
     "vue": "^2.2.2",
     "vuefire": "^1.4.0"
