@@ -1,82 +1,30 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Herramienta para monitorear en tiempo real los niveles de los embalses en Puerto Rico.">
-  <meta name="author" content="Jaime A. Olmo">  
-  <title>Niveles de embalses en Puerto Rico</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container">
-    <div class="main-header">
-      <h1>Niveles de embalses en Puerto Rico</h1>
-      <div class="main-description">Monitoreo en tiempo real de los niveles de los embalses en Puerto Rico. Medida reportada en metros. Tiempo indica última lectura recibida por el Servicio Geológico de EE. UU.</div>
-    </div>
-  </div>
-  <div class="main-content">
-    <div id="app">
-      <div class="btn-group btn-group-justified" role="group">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" v-on:click="sortBy('city')">Pueblo</button>
-        </div>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" v-on:click="sortBy('currentLevel')">Nivel</button>
-        </div>
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default" v-on:click="sortBy('status')">Status</button>
-        </div>
-      </div>
-      <form id="search">
-        <input class="form-control" placeholder="Filtrar información..." name="q" v-model="filterKey">
-      </form>
-        <div class="list-group" v-for="val in embalses" track-by="$key">
-          <div class="list-group-item" v-for="item in val | filterBy filterKey | orderBy sortKey order"> 
-            <div id="{{ $key }}" class="row">
-              <div class="{{ item.status }}"></div>
-              <div class="col-xs-6" v-cloak>
-                  <p class="list-group-item-text">{{ item.city }}</p>
-                  <h3 class="list-group-item-heading">{{ item.name }}</h3>
-              </div>
-              <div class="col-xs-6 text-right" v-cloak>
-                  <h2 class="list-group-item-heading"><span class="glyphicon {{ item.indicator }}" aria-hidden="true"></span>{{ item.currentLevel | toDecimal }}</h2>
-                  <p class="list-group-item-text">{{ item.currentLevelTime | formatDate }}</p>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="legend">
-      <div><strong>Leyenda Niveles de Alerta:</strong></div>
-      <span><div class="_overflow leyenda"></div> Desborde </span>
-      <span><div class="_secure leyenda"></div> Seguridad </span>
-      <span><div class="_observation leyenda"></div> Observación </span>
-      <span><div class="_adjustment leyenda"></div> Ajustes Operacionales</span>
-      <span><div class="_control leyenda"></div> Control </span>
-      <span><div class="_off leyenda"></div> Fuera de Servicio</span>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="col-xs-6">
-      © 2016 <a href="http://www.jaimeolmo.com">Jaime Olmo</a> — Hecho en <a href="http://www.seepuertorico.com/">Puerto Rico</a>
-    </div>
-    <div class="col-xs-6 text-right">
-      Fork me y colabora <a href="https://github.com/jamesxv7/embalses"><img src="GitHub-Mark.png" /></a>
-    </div>
-  </div>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  
+<!DOCTYPE html><html lang=es><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Herramienta para monitorear en tiempo real los niveles de los embalses en Puerto Rico."><meta name=author content="Jaime A. Olmo"><title>Niveles de embalses en Puerto Rico</title><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css><style>.container {
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .main-description {
+      font-weight: 400;
+      color: #777;
+      font-size: 1.7em;
+    }
+    
+    @media (min-width: 1200px) {
+      .container {
+        width: 960px;
+      }
+    }
+    
+    @media (min-width: 1599px) {
+      .container {
+        width: 1400px;
+        text-align: center;
+      }
+    }</style><link href=/static/css/app.f9eccc0b09823e347c9011cfe6b71183.css rel=stylesheet></head><body><div class=container><div class=main-header><h1>Niveles de embalses en Puerto Rico</h1><div class=main-description>Monitoreo en tiempo real de los niveles de los embalses en Puerto Rico. Medida reportada en metros. Tiempo indica última nlectura recibida por el Servicio Geológico de EE. UU.</div></div></div><div id=app></div><script>(function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-67801226-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-  <script src="//cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
-  <script src="main.js"></script>
-</body>
-</html>
+    ga('send', 'pageview');</script><script type=text/javascript src=/static/js/manifest.7cf32ed0cb2b49dea642.js></script><script type=text/javascript src=/static/js/vendor.b8bcfd489c76f465a4c8.js></script><script type=text/javascript src=/static/js/app.f2103058eb2cfb5754e2.js></script></body></html>
