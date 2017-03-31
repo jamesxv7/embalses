@@ -1,0 +1,162 @@
+﻿.container {
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1600px;
+}
+
+.main-description {
+  font-weight: 400;
+  color: #777;
+  font-size: 1.7em;
+}
+
+#app, #legend {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+#legend {
+  padding-bottom: 28px;
+}
+
+#legend span {
+  display:inline-block;
+  padding-right: 10px; 
+}
+
+.footer { 
+  max-width: 1600px;
+  margin: 0 auto;
+  padding-bottom: 18px;
+  display: flex;
+  width: 90%;
+}
+
+#app button,
+#app #search {
+  margin-bottom: 10px;
+}
+
+.a_overflow,
+.b_secure,
+.c_observation,
+.d_adjustment,
+.e_control,
+.f_off,
+.g_none { 
+  height:100%;
+  top:0; 
+  width:12px; 
+  display:inline; 
+  margin-right:6px;
+  position:absolute;
+  border-radius: 4px 0 0 4px;
+}
+
+.leyenda {
+  height:12px; 
+  width: 12px;
+  display:inline-block;
+}
+
+.a_overflow,
+._overflow { 
+  background-color: #D9A5EF !important; 
+}
+
+.b_secure,
+._secure { 
+  background-color: #B1D6B1 !important; 
+}
+
+.c_observation,
+._observation { 
+  background-color: #BBCAF4 !important; 
+}
+
+.d_adjustment,
+._adjustment { 
+  background-color: #FFFFA5 !important; 
+}
+
+.e_control,
+._control { 
+  background-color: #FFDFA5 !important;
+}
+
+.f_off,
+._off { 
+  background-color: #E8A5A5 !important; 
+}
+
+.g_none,
+._none { 
+  background-color: #EEE !important; 
+  border-radius: 5px 0 0 5px;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.glyphicon {
+  font-size: .45em;
+  color: yellowgreen;
+  opacity: 0.5;
+  padding-right: 4px;
+  top: 25%;
+  -webkit-transform: translateY(-25%);
+  -ms-transform: translateY(-25%);
+  transform: translateY(-25%);
+}
+
+.glyphicon-circle-arrow-up {
+  color: green;
+  opacity: 0.5;
+}
+
+.glyphicon-circle-arrow-down {
+  color: red;
+  opacity: 0.5;
+}
+
+.list-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.list-group-item {
+  flex: 1 0 100%;
+  margin: 10px 5px;
+  border-radius: 5px;
+}
+
+@media (min-width: 600px) {
+  .list-group-item {
+    flex: 1 0 48%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 960px !important;
+  }
+
+  .list-group-item {
+    flex: 1 0 31%;
+    max-width: 31%;
+  }
+}
+
+@media (min-width: 1599px) {
+  .container {
+    width: 1400px !important;
+    text-align: center;
+  }
+}

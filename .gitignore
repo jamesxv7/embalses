@@ -271,9 +271,12 @@ node_modules
 .babelrc
 .eslintrc*
 .firebaserc
+<<<<<<< HEAD
 .
 
 ##
 App_Data/
 dist/
 test/
+=======
+>>>>>>> master
