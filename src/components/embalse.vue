@@ -247,7 +247,7 @@ export default {
   height: 100%;
   top: 0; 
   width: 12px; 
-  display: inline; 
+  display: flex; 
   margin-right: 6px;
   position: absolute;
   border-radius: 4px 0 0 4px;
